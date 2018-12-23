@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -33,13 +34,38 @@ public class Main extends Application {
         showOverview();
 
         //значек в трее
-        Tray tray = new Tray();
-        tray.setTrayIcon();
+//        Tray tray = new Tray();
+//////        tray.setTrayIcon();
+
+
+        /* Use an appropriate Look and Feel */
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        } catch (UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        /* Turn off metal's use of bold fonts */
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        //Schedule a job for the event-dispatching thread:
+        //adding TrayIcon.
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                //new Tray();
+                Tray.createAndShowGUI();
+            }
+        });
 
 
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
-            Tray.trayON(primaryStage);
+            //Tray.trayON(primaryStage);
         });
     }
 
