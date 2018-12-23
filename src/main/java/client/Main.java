@@ -52,7 +52,8 @@ public class Main extends Application {
         //adding TrayIcon.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Tray.createAndShowGUI();
+                //Tray.createAndShowGUI();
+                new Tray().createAndShowGUI();
             }
         });
 
