@@ -19,8 +19,6 @@ import static client.Main.primaryStage;
 
 public class Tray {
     private static final Logger trayLogger = LogManager.getLogger(Tray.class.getName());
-    private static SystemTray tray;
-    public static Stage currentStage;
 
     public static void createAndShowGUI() {
         //Check the SystemTray support
@@ -30,31 +28,32 @@ public class Tray {
         }
         final PopupMenu popup = new PopupMenu();
         final TrayIcon trayIcon =
-                new TrayIcon(createImage("/client/images/bulb.gif", "tray icon"));
+                new TrayIcon(createImage("/client/images/icon.png", "PocketMsg"));
         final SystemTray tray = SystemTray.getSystemTray();
 
         // Create a popup menu components
-        MenuItem aboutItem = new MenuItem("About");
-        CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
-        CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
-        Menu displayMenu = new Menu("Display");
-        MenuItem errorItem = new MenuItem("Error");
-        MenuItem warningItem = new MenuItem("Warning");
-        MenuItem infoItem = new MenuItem("Info");
-        MenuItem noneItem = new MenuItem("None");
-        MenuItem exitItem = new MenuItem("Exit");
+
+        CheckboxMenuItem cb1 = new CheckboxMenuItem("Развернуть");
+        CheckboxMenuItem cb2 = new CheckboxMenuItem("Тихий режим");
+//        Menu displayMenu = new Menu("Display");
+//        MenuItem errorItem = new MenuItem("Error");
+//        MenuItem warningItem = new MenuItem("Warning");
+//        MenuItem infoItem = new MenuItem("Info");
+//        //MenuItem noneItem = new MenuItem("None");
+        MenuItem aboutItem = new MenuItem("О программе");
+        MenuItem exitItem = new MenuItem("Выход");
 
         //Add components to popup menu
-        popup.add(aboutItem);
-        popup.addSeparator();
         popup.add(cb1);
         popup.add(cb2);
         popup.addSeparator();
-        popup.add(displayMenu);
-        displayMenu.add(errorItem);
-        displayMenu.add(warningItem);
-        displayMenu.add(infoItem);
-        displayMenu.add(noneItem);
+//        popup.add(displayMenu);
+//        displayMenu.add(errorItem);
+//        displayMenu.add(warningItem);
+//        displayMenu.add(infoItem);
+        //displayMenu.add(noneItem);
+        popup.addSeparator();
+        popup.add(aboutItem);
         popup.add(exitItem);
 
         trayIcon.setPopupMenu(popup);
@@ -76,7 +75,7 @@ public class Tray {
         aboutItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,
-                        "This dialog box is run from the About menu item");
+                        "Информация о программе.");
             }
         });
 
@@ -95,7 +94,7 @@ public class Tray {
             public void itemStateChanged(ItemEvent e) {
                 int cb2Id = e.getStateChange();
                 if (cb2Id == ItemEvent.SELECTED){
-                    trayIcon.setToolTip("Sun TrayIcon");
+                    trayIcon.setToolTip("PocketMessenger");
                 } else {
                     trayIcon.setToolTip(null);
                 }
@@ -130,10 +129,10 @@ public class Tray {
             }
         };
 
-        errorItem.addActionListener(listener);
-        warningItem.addActionListener(listener);
-        infoItem.addActionListener(listener);
-        noneItem.addActionListener(listener);
+//        errorItem.addActionListener(listener);
+//        warningItem.addActionListener(listener);
+//        infoItem.addActionListener(listener);
+        //noneItem.addActionListener(listener);
 
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -148,7 +147,7 @@ public class Tray {
         URL imageURL = Main.class.getResource(path);
 
         if (imageURL == null) {
-            System.err.println("Resource not found: " + path);
+            System.err.println("Ресурс не найден: " + path);
             return null;
         } else {
             return (new ImageIcon(imageURL, description)).getImage();

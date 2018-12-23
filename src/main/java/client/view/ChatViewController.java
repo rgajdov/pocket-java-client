@@ -395,7 +395,6 @@ public class ChatViewController implements Initializable {
         Stage stage = (Stage) messagePanel.getScene().getWindow();
         stage.close();
         clientController.disconnect();
-        Tray.currentStage = null;
         Main.initRootLayout();
         Main.showOverview();
     }

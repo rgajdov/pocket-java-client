@@ -33,11 +33,6 @@ public class Main extends Application {
         //показываем общий вид
         showOverview();
 
-        //значек в трее
-//        Tray tray = new Tray();
-//////        tray.setTrayIcon();
-
-
         /* Use an appropriate Look and Feel */
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -57,15 +52,12 @@ public class Main extends Application {
         //adding TrayIcon.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //new Tray();
                 Tray.createAndShowGUI();
             }
         });
 
-
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
-            //Tray.trayON(primaryStage);
         });
     }
 

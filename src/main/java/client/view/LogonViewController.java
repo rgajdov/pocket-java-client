@@ -51,7 +51,6 @@ public class LogonViewController implements Initializable {
             chatStage.setTitle("Pocket desktop client. \t\t Logged as: [" + controller.getSenderName() + "]");
             chatStage.setScene(new Scene(root));
             chatStage.show();
-            Tray.currentStage = chatStage;
 
             chatStage.setOnCloseRequest(event -> {
                 event.consume();
