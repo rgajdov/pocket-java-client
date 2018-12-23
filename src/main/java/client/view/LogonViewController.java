@@ -55,7 +55,6 @@ public class LogonViewController implements Initializable {
 
             chatStage.setOnCloseRequest(event -> {
                 event.consume();
-                Tray.trayON(chatStage);
             });
         } else {
             loginField.clear();
