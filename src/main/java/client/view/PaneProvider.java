@@ -2,10 +2,20 @@ package client.view;
 
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 
 public abstract class PaneProvider {
-    private static ScrollPane myProfileScrollPane;
+    private static ScrollPane profileScrollPane;
     private static HamburgerBackArrowBasicTransition transitionBack;
+    private static BorderPane borderPaneMain;
+
+    public static BorderPane getBorderPaneMain() {
+        return borderPaneMain;
+    }
+
+    public static void setBorderPaneMain(BorderPane borderPaneMain) {
+        PaneProvider.borderPaneMain = borderPaneMain;
+    }
 
     public static HamburgerBackArrowBasicTransition getTransitionBack() {
         return transitionBack;
@@ -15,11 +25,11 @@ public abstract class PaneProvider {
         PaneProvider.transitionBack = transitionBack;
     }
 
-    public static ScrollPane getMyProfileScrollPane() {
-        return myProfileScrollPane;
+    public static ScrollPane getProfileScrollPane() {
+        return profileScrollPane;
     }
 
-    public static void setMyProfileScrollPane(ScrollPane myProfileScrollPane) {
-        PaneProvider.myProfileScrollPane = myProfileScrollPane;
+    public static void setProfileScrollPane(ScrollPane profileScrollPane) {
+        PaneProvider.profileScrollPane = profileScrollPane;
     }
 }
